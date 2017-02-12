@@ -3,12 +3,28 @@
   <head>
     <title>Bookshelf</title>
     <%= csrf_meta_tags %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+    <header class="row">
+      <div class="col-8">
+        <%= link_to 'Your Catalog', root_path %>
+      </div>
+      <div class="col-4">
+        <%= link_to 'New Book', new_book_path %>
+      </div>
+    </header>
+
   <body>
+
+    <% if flash[:error].present? %>
+      <div class="col-10 offset-1 alert alert-danger">
+        <%= flash[:error].html_safe %>
+      </div>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
