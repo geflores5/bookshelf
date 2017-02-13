@@ -1,12 +1,13 @@
 <div class="col-6 center">
-  <h1>Enter New Book Info</h1>
+  <h1>Edit Book Info</h1>
   <%= simple_form_for @book do |f| %>
     <%= f.input :title %>
     <%= f.input :author %>
     <%= f.input :genre %>
     <%= f.input :classification, label: "Classification (Fiction/Nonfiction/etc)" %>
     <%= f.input :year %>
+    <%= link_to 'Remove Book', Book.find(@book.id).destroy %>
     <br />
-    <%= f.submit 'Add Book', class: 'btn btn-danger' %>
+    <%= f.submit 'Edit Book', class: 'btn btn-danger' %>
   <% end %>
 </div>

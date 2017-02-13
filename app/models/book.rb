@@ -4,4 +4,5 @@ class Book < ApplicationRecord
   validates :genre, presence: true
   validates :classification, presence: true
   validates :year, presence: true, numericality: true
+
 end
