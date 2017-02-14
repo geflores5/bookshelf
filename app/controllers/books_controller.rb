@@ -1,12 +1,12 @@
 class BooksController < ApplicationController
   def index
     @books = if params[:term]
-      # Book.where('title LIKE ?', "%#{params[:term]}%")
-      Book.where('author LIKE ?', "%#{params[:term]}%")
-      # Book.where('genre LIKE ?', "%#{params[:term]}%")
-      # Book.where('classification LIKE ?', "%#{params[:term]}%")
+      Book.where('title LIKE ?', "%#{params[:term]}%").or(Book.where('author LIKE ?', "%#{params[:term]}%")).or(Book.where('genre LIKE ?', "%#{params[:term]}%")).or(Book.where('classification LIKE ?', "%#{params[:term]}"))
+    #elsif params[:term].is_a?(Integer) == true
+    #  Book.where('year LIKE ?', "%#{params[:term]}%")
     else
       Book.all
+    end
   end
 
   def new
@@ -20,8 +20,6 @@ class BooksController < ApplicationController
     end
     redirect_to root_path
   end
-
-end
 
   def edit
     @book = Book.find(params[:id])
@@ -38,7 +36,7 @@ end
   private
 
   def book_params
-    params.require(:book).permit(:title, :author, :genre, :classification, :year, :term, tasks_attributes: [:id, :_destroy])
+    params.require(:book).permit(:title, :author, :genre, :classification, :year, :term)
   end
 
 end

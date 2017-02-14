@@ -6,7 +6,10 @@
     <%= f.input :genre %>
     <%= f.input :classification, label: "Classification (Fiction/Nonfiction/etc)" %>
     <%= f.input :year %>
+    <br />
+    <br />
     <%= link_to 'Remove Book', Book.find(@book.id).destroy %>
+    <br />
     <br />
     <%= f.submit 'Edit Book', class: 'btn btn-danger' %>
   <% end %>
