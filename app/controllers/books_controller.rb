@@ -26,11 +26,12 @@ class BooksController < ApplicationController
   end
 
   def update
-    @book = Book.create(book_params)
-    if @book.invalid?
-      flash[:error] = '<strong>Could not save</strong> invalid data.'
+    @book = Book.find(params[:id])
+    if @book.update_attributes(book_params)
+      redirect_to root_path
+    else
+      render 'edit'
     end
-    redirect_to root_path
   end
 
   private
