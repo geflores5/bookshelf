@@ -21,6 +21,10 @@ class BooksController < ApplicationController
     redirect_to root_path
   end
 
+  def show
+    @book = Book.find(params[:id])
+  end
+
   def edit
     @book = Book.find(params[:id])
   end
@@ -28,6 +32,7 @@ class BooksController < ApplicationController
   def update
     @book = Book.find(params[:id])
     if @book.update_attributes(book_params)
+      @book.save
       redirect_to root_path
     else
       render 'edit'

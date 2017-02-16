@@ -5,7 +5,7 @@
 
 <% for book in @books %>
   <div>
-    <h1> <%= book.title %></h1>
+    <h1> <%= link_to book.title, book_path(book.id) %></h1>
     <h6>- <%= book.author %></h6>
     <h6>- <%= book.genre %></h6>
     <h6>- <%= book.classification %></h6>
