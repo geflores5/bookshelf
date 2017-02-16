@@ -1,5 +1,6 @@
 <div class="col-6 center">
   <h1>Edit Book Info</h1>
+  <%# book = Book.find(@book.id) %>
   <%= simple_form_for @book do |f| %>
     <%= f.input :title %>
     <%= f.input :author %>
@@ -8,9 +9,9 @@
     <%= f.input :year %>
     <br />
     <br />
-    <%= link_to 'Remove Book', Book.find(@book.id).destroy %>
-    <br />
-    <br />
-    <%= f.submit 'Edit Book', class: 'btn btn-danger' %>
+    <%= f.submit 'Edit Book', class: 'btn btn-primary' %>
   <% end %>
 </div>
+<br />
+<br />
+<%= link_to 'Remove Book', book_path(@book), :method => :delete, class: 'btn btn-danger' %>

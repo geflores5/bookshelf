@@ -1,9 +1,8 @@
 class BooksController < ApplicationController
   def index
     @books = if params[:term]
-      Book.where('title LIKE ?', "%#{params[:term]}%").or(Book.where('author LIKE ?', "%#{params[:term]}%")).or(Book.where('genre LIKE ?', "%#{params[:term]}%")).or(Book.where('classification LIKE ?', "%#{params[:term]}"))
-    #elsif params[:term].is_a?(Integer) == true
-    #  Book.where('year LIKE ?', "%#{params[:term]}%")
+      Book.where('title LIKE ? OR author LIKE ? OR genre LIKE ? OR classification LIKE ? OR year = ?',
+      "%#{params[:term]}%", "%#{params[:term]}%", "%#{params[:term]}%", "%#{params[:term]}%", "#{params[:term].to_i}")
     else
       Book.all
     end
@@ -14,11 +13,13 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.create(book_params)
-    if @book.invalid?
-      flash[:error] = '<strong>Could not save</strong> invalid data.'
+    @book = Book.new(book_params)
+
+    if @book.save
+      redirect_to root_path, notice: 'Book successfully created.'
+    else
+      render :new, alert: '<strong>Could not save</strong> invalid data.'
     end
-    redirect_to root_path
   end
 
   def show
@@ -30,12 +31,26 @@ class BooksController < ApplicationController
   end
 
   def update
-    @book = Book.find(params[:id])
-    if @book.update_attributes(book_params)
-      @book.save
+    @book = Book.find_by(id: params[:id])
+
+    if @book && @book.update_attributes(book_params)
       redirect_to root_path
     else
       render 'edit'
+    end
+  end
+
+  def destroy
+
+    #raise params
+
+    @book = Book.find_by(id: params[:id])
+
+    if @book
+      @book.destroy
+      redirect_to root_path, notice: 'Book successfully deleted'
+    else
+      redirect_to root_path, alert: 'Book does not exist'
     end
   end
 
