@@ -1,16 +1,20 @@
-<%= form_tag(books_path, method: :get) do %>
-  <%= text_field_tag :term %>
-  <%= submit_tag 'Search', name: nil %>
-<% end %>
+<div class="booyah-box col-10 offset-1">
 
-<% @books.each  do | book | %>
-  <div>
-    <h1> <%= link_to book.title, book_path(book) %></h1>
-    <h6>- <%= book.author %></h6>
-    <h6>- <%= book.genre %></h6>
-    <h6>- <%= book.classification %></h6>
-    <h6>- <%= book.year %></h6>
-    <h6> <%= link_to 'Edit Book', edit_book_path(book) %> </h6>
-  </div>
-  <hr />
-<% end %>
+  <%= form_tag(books_path, method: :get) do %>
+    <%= text_field_tag :term %>
+    <%= submit_tag 'Search', name: nil %>
+  <% end %>
+
+  <% @books.each  do | book | %>
+    <div>
+      <h1> <%= link_to book.title, book_path(book) %></h1>
+      <h6>- <%= book.author %></h6>
+      <h6>- <%= book.genre %></h6>
+      <h6>- <%= book.classification %></h6>
+      <h6>- <%= book.year %></h6>
+      <h6> <%= link_to 'Edit Book', edit_book_path(book) %> </h6>
+    </div>
+    <hr />
+  <% end %>
+
+</div>
