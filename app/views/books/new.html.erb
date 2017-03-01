@@ -2,7 +2,6 @@
   <h1>Enter New Book Info</h1>
   <%= simple_form_for @book do |f| %>
     <%= f.input :title %>
-    <%= f.input :author %>
     <%= f.input :genre %>
     <%= f.input :classification, label: "Classification (Fiction/Nonfiction/etc)" %>
     <%= f.input :year %>
