@@ -1,5 +1,7 @@
-<% author = Author.find(@author.id) %>
-<h1><%= "Books by #{author.first_name} #{author.last_name}:" %></h1>
-<% author.books.each do |book| %>
-  <%= book.title %>
-<% end %>
+<div class="booyah-box col-10 offset-1">
+  <% author = Author.find(@author.id) %>
+  <h1><%= "Books by #{author.first_name} #{author.last_name}:" %></h1>
+  <% author.books.each do |book| %>
+    <%= book.title %>
+  <% end %>
+</div>

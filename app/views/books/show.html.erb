@@ -1,6 +1,7 @@
-<% book = Book.find(@book.id) %>
-<h1> <%= book.title %></h1>
-<h6>- <%= book.author %></h6>
-<h6>- <%= book.genre %></h6>
-<h6>- <%= book.classification %></h6>
-<h6>- <%= book.year %></h6>
+<div class="booyah-box col-10 offset-1">
+  <% book = Book.find(@book.id) %>
+  <h1> <%= book.title %></h1>
+  <h6>- <%= book.genre %></h6>
+  <h6>- <%= book.classification %></h6>
+  <h6>- <%= book.year %></h6>
+</div>

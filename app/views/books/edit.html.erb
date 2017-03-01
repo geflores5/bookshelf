@@ -1,9 +1,8 @@
-<div class="col-6 center">
+<div class="booyah-box col-10 offset-1">
   <h1>Edit Book Info</h1>
   <%# book = Book.find(@book.id) %>
   <%= simple_form_for @book do |f| %>
     <%= f.input :title %>
-    <%= f.input :author %>
     <%= f.input :genre %>
     <%= f.input :classification, label: "Classification (Fiction/Nonfiction/etc)" %>
     <%= f.input :year %>

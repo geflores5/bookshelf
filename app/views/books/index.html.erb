@@ -8,7 +8,6 @@
   <% @books.each  do | book | %>
     <div>
       <h1> <%= link_to book.title, book_path(book) %></h1>
-      <h6>- <%= book.author %></h6>
       <h6>- <%= book.genre %></h6>
       <h6>- <%= book.classification %></h6>
       <h6>- <%= book.year %></h6>
