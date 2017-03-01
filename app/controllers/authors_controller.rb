@@ -1,5 +1,14 @@
 class AuthorsController < ApplicationController
 
+  def index
+    @authors = if params[:term]
+      Author.where('first_name LIKE ? OR last_name LIKE ? OR age = ?',
+      "%#{params[:term]}%", "%#{params[:term]}%", "#{params[:term].to_i}")
+    else
+      Author.all
+    end
+  end
+
   def new
     @author = Author.new
   end

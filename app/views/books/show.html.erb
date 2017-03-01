@@ -1,7 +1,12 @@
 <div class="booyah-box col-10 offset-1">
   <% book = Book.find(@book.id) %>
   <h1> <%= book.title %></h1>
+  <h3><%= "Written by: " %> </h3>
+  <% book.authors.each do |author| %>
+    <h3> <%= link_to "#{author.first_name} #{author.last_name}", author_path(author) %> </h3>
+  <% end %>
   <h6>- <%= book.genre %></h6>
   <h6>- <%= book.classification %></h6>
   <h6>- <%= book.year %></h6>
+  <h6> <%= link_to 'Edit Book', edit_book_path(book) %> </h6>
 </div>

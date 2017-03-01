@@ -2,6 +2,6 @@
   <% author = Author.find(@author.id) %>
   <h1><%= "Books by #{author.first_name} #{author.last_name}:" %></h1>
   <% author.books.each do |book| %>
-    <%= book.title %>
+    <%= link_to book.title, book_path(book) %>
   <% end %>
 </div>
